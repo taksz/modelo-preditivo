@@ -1,0 +1,4 @@
+modelo,auc_media,auc_desvio
+Baseline (sempre 'não'),0.5,0.0
+Regressão Logística,0.7637,0.0032
+Random Forest,0.7913,0.0043

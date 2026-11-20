@@ -1,0 +1,9 @@
+modelo,conjunto,acuracia,acuracia_balanceada,precisao,recall,f1,roc_auc
+Baseline (sempre 'não'),treino,0.883,0.5,0.0,0.0,0.0,0.5
+Baseline (sempre 'não'),teste,0.883,0.5,0.0,0.0,0.0,0.5
+Regressão Logística,treino,0.7571,0.7009,0.2692,0.6275,0.3768,0.7681
+Regressão Logística,teste,0.7548,0.698,0.2662,0.6238,0.3732,0.7722
+Árvore (sem limite),treino,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore (sem limite),teste,0.8309,0.6132,0.2982,0.3289,0.3128,0.6132
+Random Forest,treino,0.8333,0.776,0.3836,0.7013,0.4959,0.8664
+Random Forest,teste,0.8151,0.7366,0.343,0.6342,0.4453,0.8004

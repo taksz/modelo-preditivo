@@ -1,0 +1,9 @@
+# Ambiente virtual e caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Base baixada da UCI (é baixada automaticamente na primeira execução)
+data/
