@@ -41,6 +41,7 @@ O download é automático (`src/dados.py`) na primeira execução e fica em `dat
 5. **Métricas**: acurácia, acurácia balanceada, precisão, recall, F1 e **ROC AUC** (principal, porque a base é desbalanceada e a AUC não depende do limiar de 0,5).
 6. **Validação cruzada** estratificada de 5 folds no treino, para verificar se o resultado é estável.
 7. **Overfitting**: comparação treino × teste de cada modelo e curva de AUC por profundidade da árvore.
+8. **Exploração e análise de erros** (no notebook): distribuição e correlação das variáveis numéricas antes de modelar, e, depois, desempenho do modelo por grupo de clientes para ver em quem ele erra.
 
 ## Resultados
 
@@ -64,6 +65,12 @@ Validação cruzada (5 folds, treino): Random Forest **0,791 ± 0,004** · Regre
 - A **árvore sem limite** tem AUC **1,00 no treino e 0,61 no teste**: decorou os clientes de treino.
 - Na curva, treino e teste sobem juntos até a profundidade ~6; entre 6 e 10 o teste para de melhorar e, depois disso, **cai** enquanto o treino continua subindo.
 - A **Random Forest** tem uma diferença treino-teste de ~0,07 (overfitting leve e controlado). A **Regressão Logística** praticamente não tem diferença.
+
+### Exploração dos dados e onde o modelo erra
+
+- **As variáveis numéricas têm correlação fraca com o alvo** (no máximo 0,10); o sinal está nas variáveis categóricas, principalmente o resultado da campanha anterior. Saldo, contatos e `previous` são muito assimétricos (poucos valores enormes), e `pdays` e `previous` têm correlação de 0,45 entre si.
+- **O modelo erra de formas diferentes por grupo.** Entre clientes que já contrataram numa campanha anterior ele é muito confiável (recall 1,00, conversão real de 65%). Entre clientes nunca contatados, o grupo maior, ele encontra só metade dos que contratariam (recall 0,50). Para maiores de 60 anos (apenas 219 clientes no teste) ele aposta "sim" em quase todos, mas só 43% contratam: previsão pouco confiável nesse grupo.
+- No geral, só cerca de 1 em cada 3 clientes indicados contrata (precisão de 0,34): o modelo ajuda a priorizar, mas gera muitas ligações perdidas.
 
 ### Na prática
 
